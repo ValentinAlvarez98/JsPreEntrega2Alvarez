@@ -1,8 +1,9 @@
 // Variables globales
 // ==================-==================
-let usuarios = [];
-let contrasenas = [];
-let opcionMenu = 0;
+const usuarios = [];
+const nombresProductos = [];
+const preciosProductos = [];
+let opcionIngreso = 0;
 let opcionProductos = 0;
 let opcionContinuar = "";
 let opcionMetodoPago = 0;
@@ -14,6 +15,15 @@ let efectivo = 0;
 let credito = 0;
 let interes = 0;
 // ==================-==================
+
+// Creador de objetos (Usuarios)
+// ==================-==================
+
+function Usuario(usuario, password) {
+    this.nombreUsuario = usuario;
+    this.passwordUsuario = password;
+}
+
 
 // Creador de objetos (Productos)
 // ==================-==================
@@ -28,7 +38,11 @@ function Producto(nombreProd, precioProd, categoriaProd, marcaProd, codigoProd) 
     this.productoSeleccionado = function () {
 
         alert(`Usted ha seleccionado el producto \n
-         ${this.nombreProd}`);
+         - ${this.nombreProd} \n
+         Al precio de: USD ${this.precioProd} \n`);
+
+        nombresProductos.push(this.nombreProd);
+        preciosProductos.push(this.precioProd);
 
     }
 
@@ -41,6 +55,118 @@ const producto1 = new Producto("ZOTAC GEFORCE RTX 2060", 619, "TARJETAS DE VIDEO
 const producto2 = new Producto("AMD PROCESADOR RYZEN 5 5600", 224, "PROCESADORES", "AMD", "BFX56");
 const producto3 = new Producto("GIGABYTE PLACA B450M DS3H V2", 93, "MOTHERBOARD", "GIGABYTE", "BFXGB45D");
 const producto4 = new Producto("NETAC MEMORIA SHADOW DDR4 16GB PC3200 RED", 60, "MEMORIA RAM", "NETAC", "BFXNS16R");
+// ==================-==================
+
+// Funcion de ingreso de usuario
+// ==================-==================
+function ingreso() {
+do {
+
+    opcionIngreso = Number(prompt(`Seleccione una opción: \n
+    1) Ingresar \n
+    2) Registrarse \n
+    0) Salir \n
+    `));
+    
+    switch (opcionIngreso) {
+
+        case 1:
+
+            let usuarioIngresado = prompt("Ingrese su usuario: ");
+            let contraseniaIngresada = prompt("Ingrese su contraseña: ");
+
+            if ((usuarios.find(usuario => usuario.nombreUsuario = usuarioIngresado.toLowerCase && usuario.passwordUsuario === contraseniaIngresada )) !== undefined) {
+
+                alert("Bienvenido " + usuarioIngresado);
+                carrito();
+
+            } else {
+
+                alert("Usuario o contraseña incorrectos");
+
+            }
+
+            break;
+        
+        case 2:
+
+            let usuarioRegistro = prompt("Ingrese su usuario: ");
+
+            if (usuarioRegistro.length < 4) {
+
+                alert("El usuario debe tener al menos 4 caracteres");
+                opcionIngreso = 2;
+
+            } else {
+
+                let contraseniaRegistro = prompt("Ingrese su contraseña: ");
+
+                if (contraseniaRegistro.length < 8) {
+
+                    alert("La contraseña debe tener al menos 8 caracteres");
+                    opcionIngreso = 2;
+
+                } else {
+
+                    let confirmarContrasenia = prompt("Confirme su contraseña: ");
+
+                    if (contraseniaRegistro !== confirmarContrasenia) {
+
+                        alert("Las contraseñas no coinciden");
+
+                    } else {
+
+                        let compararUsuarios = usuarios.find(usuario => usuario.nombreUsuario === usuarioRegistro.toLowerCase);
+
+                        if (usuarioRegistro != "" && contraseniaRegistro != "") {
+
+                            if (compararUsuarios === undefined) {
+
+                                const nuevoUsuario = new Usuario(usuarioRegistro, contraseniaRegistro);
+
+                                usuarios.push(nuevoUsuario);
+
+                                alert("¡Usuario registrado correctamente!");
+                                console.log(usuarios);
+
+                            } else {
+
+                                alert("Usuario ya registrado");
+                                console.log(usuarios);
+
+                            }
+
+                        } else {
+
+                            alert("No puede ingresar un espacio vacio, intentelo de nuevo");
+
+                        }
+    
+                        console.log("Su usuario es: " + usuarioRegistro + " y su contraseña es: " + contraseniaRegistro);
+
+                    }
+                    
+                }
+            }
+
+            break;
+        
+        case 0:
+
+            alert("¡Hasta luego!");
+
+            break;
+        
+        default:
+
+            alert("Opción incorrecta");
+
+            break;
+
+    }
+
+    } while (opcionIngreso != 0);
+}
 // ==================-==================
 
 // Funcion de carrito con todas las opciones correspondientes
@@ -68,6 +194,7 @@ function carrito() {
                 
                 producto1.productoSeleccionado();
                 precioAPagar = producto1.precioProd;
+                productosEnCarrito();
                 continuar();
 
             break;
@@ -76,6 +203,7 @@ function carrito() {
                 
                 producto2.productoSeleccionado();
                 precioAPagar = producto2.precioProd;
+                productosEnCarrito();
                 continuar();
 
             break;
@@ -84,6 +212,7 @@ function carrito() {
                 
                 producto3.productoSeleccionado();
                 precioAPagar = producto3.precioProd;
+                productosEnCarrito();
                 continuar();
 
             break;
@@ -92,6 +221,7 @@ function carrito() {
                 
                 producto4.productoSeleccionado();
                 precioAPagar = producto4.precioProd;
+                productosEnCarrito();
                 continuar();
 
             break;
@@ -99,6 +229,7 @@ function carrito() {
             case 0:
                 
                 alert("¡Volviendo al menú de inicio!");
+                ingreso();
                 
                 break;
             
@@ -112,18 +243,36 @@ function carrito() {
         
     } while (opcionProductos != 0);
 
-    // Funcion para continuar comprando
+    // Productos en el carrito
+    // ==================-==================
+    function productosEnCarrito() {
+
+        let productosEnCarrito = [];
+
+        for (let i = 0; i < nombresProductos.length; i++) {
+
+            productosEnCarrito += nombresProductos[i] + " " + "USD" + " " + preciosProductos[i] + "\n";
+
+        }
+
+        console.log(productosEnCarrito);
+
+    }
+    // ==================-==================
+
+
+    // Funcion para continuar
     // ==================-==================
     function continuar() {
 
-        opcionContinuar = prompt(`¿Desea continuar con la compra? \n
+        opcionContinuar = prompt(`¿Desea añadir otro producto al carrito? \n
         S/N\n`
         ); 
              
         if (opcionContinuar == "S" || opcionContinuar == "s") {
-            pago(opcionMetodoPago);
-        } else if (opcionContinuar == "N" || opcionContinuar == "n") {
             carrito();
+        } else if (opcionContinuar == "N" || opcionContinuar == "n") {
+            pago(opcionMetodoPago);
         } else {
             alert("Opción incorrecta");
             continuar(); 
@@ -189,9 +338,24 @@ function carrito() {
         // ==================-==================
         function calculadoraPago() {
 
+
+            let precioAPagar = 0;
+
+            for (let i = 0; i < preciosProductos.length; i++) {
+                precioAPagar += preciosProductos[i];
+            }	
+
+            nombresProductos = [];
+            preciosProductos = [];
+
+
+            console.log(precioAPagar);
+            console.log(preciosProductos);
+            
             interes = precioAPagar * (5 / 100);
             
             let precioMasInteres = precioAPagar + interes;
+
             const precioCuotas = [];
         
             if (efectivo == 1) {
@@ -349,76 +513,9 @@ console.log(producto4);
 console.log("===============================")
 // ==================-==================
 
-// Mensaje de bienvenida
+// Mensaje de bienvenida e inicio del programa
 // ==================-==================
 alert("¡Bienvenido a Banifox!");
+ingreso();
 // ==================-==================
 
-// Menú de ingreso
-// ==================-==================
-do {
-
-    opcionMenu = Number(prompt(`Seleccione una opción: \n
-    1) Ingresar \n
-    2) Registrarse \n
-    0) Salir \n
-    (Aclaración: Solo puede registrar un único usuario)`));
-    
-    switch (opcionMenu) {
-
-        case 1:
-
-            let usuario = prompt("Ingrese su usuario: ");
-            let contrasena = prompt("Ingrese su contraseña: ");
-
-            if ((usuario == usuarios && usuarios != "") && (contrasena == contrasenas && contrasenas != "")) {
-                
-                alert("¡Ingresaste correctamente!");
-                carrito();
-
-            } else {
-
-                alert("El usuario y/o contraseña son incorrectos");
-
-            }
-
-            break;
-        
-        case 2:
-
-            let nuevoUsuario = prompt("Ingrese un usuario: ");
-            let nuevaContrasena = prompt("Ingrese una contraseña: ");
-
-            if ((nuevoUsuario != "") && (nuevaContrasena != "")) {
-
-                usuarios.push(nuevoUsuario);
-                contrasenas.push(nuevaContrasena);
-
-            } else {
-
-                alert("No puede ingresar un espacio vacio, intentelo de nuevo");
-                opcionMenu = 2;
-                break;
-
-            }
-
-            console.log("Su usuario es: " + usuarios + " Y su contraseña es: " + contrasenas );
-            break;
-        
-        case 0:
-
-            alert("¡Hasta luego!");
-
-            break;
-        
-        default:
-
-            alert("Opción incorrecta");
-
-
-            break;
-
-    }
-
-}while (opcionMenu != 0);
-// ==================-==================
