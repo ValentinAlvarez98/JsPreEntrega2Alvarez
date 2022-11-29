@@ -1,0 +1,102 @@
+#headerUno {
+  background-color: #091113; }
+  #headerUno nav div div .cardHeader {
+    background-color: transparent !important; }
+  #headerUno nav div div ul li i {
+    color: #ffffe9; }
+  #headerUno nav div div ul li .nav-link {
+    color: #ffffff !important;
+    font-size: 0.85rem;
+    margin-top: 0.5rem; }
+  #headerUno nav div div ul .iconoUsuario {
+    margin-top: 0.85rem; }
+  #headerUno nav div .wpp div div div .whatsapp {
+    color: #ffffff !important; }
+  #headerUno nav div .wpp div div div div .card-text {
+    color: #ffffff !important;
+    margin-bottom: 0rem !important; }
+  #headerUno nav div .buscar form input {
+    border-radius: 0% !important; }
+  #headerUno nav div .buscar form input:focus {
+    outline: none;
+    box-shadow: none; }
+
+#headerDos {
+  background-color: black; }
+  #headerDos div div .categorias {
+    background-color: #0074bd;
+    padding-right: 0% !important;
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+    margin-left: 1rem !important; }
+    #headerDos div div .categorias .dropdown-toggle {
+      color: #ffffff; }
+  #headerDos div div .navbarSecciones {
+    padding: 0% !important; }
+    #headerDos div div .navbarSecciones nav div {
+      padding: 0% !important;
+      padding-left: 0.4rem !important; }
+      #headerDos div div .navbarSecciones nav div button {
+        border: 0px;
+        margin-bottom: 0.4rem;
+        margin-top: 0.2rem; }
+        #headerDos div div .navbarSecciones nav div button .menu {
+          margin-left: 0.6rem; }
+      #headerDos div div .navbarSecciones nav div button:focus {
+        outline: none;
+        box-shadow: none; }
+      #headerDos div div .navbarSecciones nav div div ul .nav-item {
+        margin-right: 1.8rem !important; }
+        #headerDos div div .navbarSecciones nav div div ul .nav-item .nav-link {
+          color: #ffffff !important; }
+          #headerDos div div .navbarSecciones nav div div ul .nav-item .nav-link .links {
+            text-decoration: none !important;
+            color: #ffffff !important; }
+          #headerDos div div .navbarSecciones nav div div ul .nav-item .nav-link .links:hover {
+            color: #0074bd !important; }
+  #headerDos div div .carrito a {
+    color: #ffffff;
+    opacity: 90%;
+    text-decoration: none !important; }
+
+#carousel {
+  padding: 0%; }
+
+#main div {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem; }
+  #main div div h2 {
+    color: #0074bd; }
+
+#main .navCarrito div ul li .numeroNavCarrito {
+  color: #0074bd !important;
+  font-size: 3rem;
+  padding-right: 0%; }
+
+#main .navCarrito div ul .textoNavCarrito {
+  margin-top: 1.4rem;
+  padding-left: 0%; }
+  #main .navCarrito div ul .textoNavCarrito .nav-link {
+    color: grey;
+    font-size: 1.1rem;
+    padding-left: 0.8rem;
+    margin-right: 1.2rem; }
+
+#main .navCarrito div ul .opacidadNavCarrito .nav-link {
+  opacity: 40%; }
+
+#main .navCarrito div ul .opacidadNavCarrito .nav-link:focus {
+  opacity: 100%; }
+
+#footer {
+  background-color: #091113 !important;
+  padding-top: 1.65rem !important;
+  padding-bottom: 1.65rem !important; }
+  #footer div div .cardFooter div .card-text {
+    color: grey;
+    font-size: 0.85rem;
+    margin-bottom: 0%; }
+  #footer .navegadorFooter div nav .breadcrumb .breadcrumb-item a {
+    color: white !important;
+    font-size: 0.85rem !important;
+    text-decoration: none; }

@@ -1,0 +1,178 @@
+@mixin header {
+    #headerUno {
+        background-color: #091113;
+
+        nav {
+
+            div {
+
+                div {
+
+                    .cardHeader {
+                        background-color: transparent !important;
+                    }
+
+
+                    ul {
+                        li {
+
+                            i {
+                                color: #ffffe9;
+                            }
+
+                            .nav-link {
+                                color: #ffffff !important;
+                                font-size: 1rem*0.85;
+                                margin-top: 1rem*0.5;
+                            }
+                        }
+
+                        .iconoUsuario {
+                            margin-top: 1rem*0.85;
+                        }
+                    }
+
+                }
+
+                .wpp {
+
+                    div {
+
+                        div {
+
+                            div {
+
+                                .whatsapp {
+                                    color: #ffffff !important;
+                                }
+
+                                div {
+                                    .card-text {
+                                        color: #ffffff !important;
+                                        margin-bottom: 1rem*0 !important;
+                                    }
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                .buscar {
+
+                    form {
+
+                        input {
+                            border-radius: 0% !important;
+                        }
+
+                        input:focus {
+                            outline: none;
+                            box-shadow: none;
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    #headerDos {
+        background-color: black;
+
+        div {
+
+            div {
+
+                .categorias {
+
+                    background-color: #0074bd;
+                    padding-right: 0% !important;
+                    padding-top: 1rem*0.25 !important;
+                    padding-bottom: 1rem*0.25 !important;
+                    margin-left: 2rem*0.5 !important;
+
+                    .dropdown-toggle {
+                        color: #ffffff;
+                    }
+                }
+
+                .navbarSecciones {
+                    padding: 0% !important;
+
+                    nav {
+
+                        div {
+
+                            padding: 0% !important;
+                            padding-left: 1rem*0.4 !important;
+
+                            button {
+
+                                border: 0px;
+                                margin-bottom: 1rem*0.4;
+                                margin-top: 1rem*0.2;
+
+                                .menu {
+                                    margin-left: 1rem*0.6;
+                                }
+                            }
+
+                            button:focus {
+                                outline: none;
+                                box-shadow: none;
+                            }
+
+                            div {
+
+                                ul {
+
+                                    .nav-item {
+                                        margin-right: 1.8rem !important;
+
+                                        .nav-link {
+                                            color: #ffffff !important;
+
+                                            .links {
+                                                text-decoration: none !important;
+                                                color: #ffffff !important;
+                                            }
+
+                                            .links:hover {
+                                                color: #0074bd !important;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
+                }
+
+                .carrito {
+                    a {
+                        color: #ffffff;
+                        opacity: 90%;
+                        text-decoration: none !important;
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+    #carousel {
+        padding: 0%;
+    }
+}
