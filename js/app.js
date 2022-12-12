@@ -140,7 +140,6 @@ do {
                             } else {
 
                                 alert("Usuario ya registrado");
-                                console.log(usuarios);
 
                             }
 
