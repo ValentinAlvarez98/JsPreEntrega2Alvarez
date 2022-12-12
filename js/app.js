@@ -6,6 +6,7 @@ let nombresProductos = [];
 let preciosProductos = [];
 let opcionIngreso = 0;
 let opcionProductos = 0;
+let opcionProductosCarrito = "";
 let opcionContinuar = "";
 let opcionMetodoPago = 0;
 let opcionCuotas = 0;
@@ -79,7 +80,15 @@ do {
             let usuarioIngresado = prompt("Ingrese su usuario: ");
             let contraseniaIngresada = prompt("Ingrese su contraseña: ");
 
-            if (((usuarios.find(usuario => usuario.nombreUsuario = usuarioIngresado.toLowerCase && usuario.passwordUsuario === contraseniaIngresada)) !== undefined) && (usuarioIngresado !== "true")) {
+            let usuarioAIngresar = {
+                nombreUsuario: usuarioIngresado.toLowerCase(),
+                passwordUsuario: contraseniaIngresada
+            }
+
+            const compararUsuarios = usuarios.find(usuario => (usuario.nombreUsuario === usuarioAIngresar.nombreUsuario) && (usuario.passwordUsuario === usuarioAIngresar.passwordUsuario));
+        
+
+            if ((compararUsuarios !== undefined) && (usuarioIngresado !== "true") && (contraseniaIngresada !== "true")) {
 
                 alert("Bienvenido " + usuarioIngresado);
                 carrito();
@@ -127,7 +136,7 @@ do {
                                 passwordUsuario: contraseniaRegistro
                             }
 
-                            const compararUsuarios = usuarios.find(usuario => usuario.nombreUsuario === usuarioARegistrar.nombreUsuario);
+                            const compararUsuarios = usuarios.find(usuario => (usuario.nombreUsuario === usuarioARegistrar.nombreUsuario) && (usuario.passwordUsuario === usuarioARegistrar.passwordUsuario));
 
                             if (compararUsuarios === undefined) {
 
@@ -148,8 +157,6 @@ do {
                             alert("No puede ingresar un espacio vacio, intentelo de nuevo");
 
                         }
-    
-                        console.log("Su usuario es: " + usuarioRegistro + " y su contraseña es: " + contraseniaRegistro);
 
                     }
                     
@@ -200,7 +207,7 @@ function carrito() {
                 
                 producto1.productoSeleccionado();
                 precioAPagar = producto1.precioProd;
-                continuar();
+                productosCarrito();
 
             break;
         
@@ -208,7 +215,7 @@ function carrito() {
                 
                 producto2.productoSeleccionado();
                 precioAPagar = producto2.precioProd;
-                continuar();
+                productosCarrito();
 
             break;
             
@@ -216,7 +223,7 @@ function carrito() {
                 
                 producto3.productoSeleccionado();
                 precioAPagar = producto3.precioProd;
-                continuar();
+                productosCarrito();
 
             break;
             
@@ -224,7 +231,7 @@ function carrito() {
                 
                 producto4.productoSeleccionado();
                 precioAPagar = producto4.precioProd;
-                continuar();
+                productosCarrito();
 
                 break;
             
@@ -264,6 +271,41 @@ function carrito() {
         }
         
     } while (opcionProductos != 0);
+
+    function productosCarrito() {
+        
+        
+            opcionProductosCarrito = prompt(`¿Desea ver los productos que añadió a su carrito? \n
+            S/N\n`);
+
+            if (opcionProductosCarrito == "S" || opcionProductosCarrito == "s") {
+
+                productosEnCarrito = [...nombresProductos, ...preciosProductos];
+
+                if (productosEnCarrito.length === 0) {
+
+                    alert("No hay productos en el carrito");   
+
+                } else {
+
+                    alert(`Productos en el carrito: \n
+                    ${productosEnCarrito.join("\n")}`);
+                    continuar();
+
+                }
+            
+            } else if (opcionProductosCarrito == "N" || opcionProductosCarrito == "n") {
+
+                continuar();
+
+            } else {
+
+                alert("Opción incorrecta");
+                productosCarrito();
+
+            }
+            
+    }
 
     // Funcion para continuar
     // ==================-==================
