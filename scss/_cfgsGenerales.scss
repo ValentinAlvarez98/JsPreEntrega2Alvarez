@@ -1,0 +1,10 @@
+@mixin configuracionesGenerales {
+
+    p {
+        font-family: map-get($fuentes, "regular");
+    }
+
+    a {
+        font-family: map-get($fuentes, "regular");
+    }
+}

@@ -1,7 +1,14 @@
+@import './variables';
+@import './fuentes';
+
+@import './cfgsGenerales';
 @import './header';
 @import './main';
 @import './footer';
 
-@include header;
-@include main;
-@include footer;
+@import './mediaQuery';
+@include mediaQuery(map-get($vista, "vistaDesktop"));
+@include mediaQuery(map-get($vista, "vistaDesktopMd"));
+@include mediaQuery(map-get($vista, "vistaDesktopSm"));
+@include mediaQuery(map-get($vista, "vistaTablet"));
+@include mediaQuery(map-get($vista, "vistaMobile"));

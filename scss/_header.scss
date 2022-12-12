@@ -1,6 +1,10 @@
-@mixin header {
+@mixin flexbox ($posicionamiento:col) {
+    display: flex;
+}
+
+@mixin headers {
     #headerUno {
-        background-color: #091113;
+        background-color: map-get($paletaDeColores, "negro-suave");
 
         nav {
 
@@ -17,11 +21,11 @@
                         li {
 
                             i {
-                                color: #ffffe9;
+                                color: map-get($paletaDeColores, "blanco");
                             }
 
                             .nav-link {
-                                color: #ffffff !important;
+                                color: map-get($paletaDeColores, "blanco") !important;
                                 font-size: 1rem*0.85;
                                 margin-top: 1rem*0.5;
                             }
@@ -43,12 +47,12 @@
                             div {
 
                                 .whatsapp {
-                                    color: #ffffff !important;
+                                    color: map-get($paletaDeColores, "blanco") !important;
                                 }
 
                                 div {
                                     .card-text {
-                                        color: #ffffff !important;
+                                        color: map-get($paletaDeColores, "blanco") !important;
                                         margin-bottom: 1rem*0 !important;
                                     }
                                 }
@@ -85,7 +89,7 @@
     }
 
     #headerDos {
-        background-color: black;
+        background-color: map-get($paletaDeColores, "negro");
 
         div {
 
@@ -93,11 +97,13 @@
 
                 .categorias {
 
-                    background-color: #0074bd;
+                    background-color: map-get($paletaDeColores, "azul");
                     padding-right: 0% !important;
                     padding-top: 1rem*0.25 !important;
                     padding-bottom: 1rem*0.25 !important;
-                    margin-left: 2rem*0.5 !important;
+                    font-size: 1rem*0.95 !important;
+
+
 
                     .dropdown-toggle {
                         color: #ffffff;
@@ -109,58 +115,46 @@
 
                     nav {
 
-                        div {
+                        @include flexbox;
+                        justify-content: center;
 
-                            padding: 0% !important;
-                            padding-left: 1rem*0.4 !important;
+                        ul {
 
-                            button {
 
-                                border: 0px;
-                                margin-bottom: 1rem*0.4;
-                                margin-top: 1rem*0.2;
 
-                                .menu {
-                                    margin-left: 1rem*0.6;
-                                }
+                            .itemsSecciones {
+                                margin-right: 1.8rem !important;
                             }
 
-                            button:focus {
-                                outline: none;
-                                box-shadow: none;
-                            }
+                            .nav-item {
 
-                            div {
+                                .nav-link {
+                                    color: map-get($paletaDeColores, "blanco") !important;
+                                    font-size: 1rem*0.95;
+                                    padding-top: 4px !important;
+                                    padding-bottom: 4px !important;
 
-                                ul {
+                                    .links {
+                                        text-decoration: none !important;
+                                        color: map-get($paletaDeColores, "blanco") !important;
+                                    }
 
-                                    .nav-item {
-                                        margin-right: 1.8rem !important;
-
-                                        .nav-link {
-                                            color: #ffffff !important;
-
-                                            .links {
-                                                text-decoration: none !important;
-                                                color: #ffffff !important;
-                                            }
-
-                                            .links:hover {
-                                                color: #0074bd !important;
-                                            }
-                                        }
+                                    .links:hover {
+                                        color: map-get($paletaDeColores, "azul") !important;
                                     }
                                 }
                             }
-
                         }
 
                     }
                 }
 
                 .carrito {
+                    @include flexbox;
+                    justify-content: end;
+
                     a {
-                        color: #ffffff;
+                        color: map-get($paletaDeColores, "blanco");
                         opacity: 90%;
                         text-decoration: none !important;
                     }
@@ -174,5 +168,48 @@
 
     #carousel {
         padding: 0%;
+    }
+}
+
+
+
+@mixin headersDesktopSm {
+    #headerUno {
+        nav {
+            div {
+                .wpp {
+                    display: none !important;
+                }
+            }
+        }
+    }
+
+    #headerDos {
+        div {
+            div {
+                .navbarSecciones {
+                    display: none !important;
+                }
+            }
+        }
+    }
+}
+
+@mixin headersTablet {
+    #headerUno {
+        nav {
+            div {
+                .logo {
+                    div {
+                        @include flexbox;
+                        justify-content: center;
+                    }
+                }
+
+                .wpp {
+                    display: none !important;
+                }
+            }
+        }
     }
 }

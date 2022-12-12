@@ -6,7 +6,7 @@
 
             div {
                 h2 {
-                    color: #0074bd;
+                    color: map-get($paletaDeColores, "azul");
                 }
             }
         }
@@ -16,10 +16,9 @@
                 ul {
                     li {
                         .numeroNavCarrito {
-                            color: #0074bd !important;
+                            color: map-get($paletaDeColores, "azul") !important;
                             font-size: 1rem*3;
                             padding-right: 0%;
-
                         }
                     }
 
@@ -28,7 +27,7 @@
                         padding-left: 0%;
 
                         .nav-link {
-                            color: grey;
+                            color: map-get($paletaDeColores, "gris");
                             font-size: 1rem*1.1;
                             padding-left: 1rem*0.8;
                             margin-right: 1rem*1.2;
@@ -46,6 +45,47 @@
                         }
                     }
 
+                }
+            }
+        }
+
+        #titulosProductosNuevos {
+            div {
+                h4 {
+                    color: map-get($paletaDeColores, "azul");
+                }
+            }
+        }
+
+        #productosNuevos {
+            div {
+                div {
+                    .card {
+
+                        div {
+                            p {
+                                font-size: 1rem*0.80;
+                            }
+
+                            h6 {
+                                font-size: 1rem*1.05 !important;
+                                color: map-get($paletaDeColores, "rojo");
+                            }
+
+
+                        }
+
+                        .card-footer {
+                            background-color: transparent;
+
+                            .btn {
+                                background-color: map-get($paletaDeColores, "azul");
+                                color: map-get($paletaDeColores, "blanco");
+                                font-size: 1rem*0.95;
+                                padding: 1rem*0.5 1rem*1.5;
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -1,8 +1,9 @@
 // Variables globales
 // ==================-==================
-const usuarios = [];
-const nombresProductos = [];
-const preciosProductos = [];
+let usuarios = [];
+let productosEnCarrito = [];
+let nombresProductos = [];
+let preciosProductos = [];
 let opcionIngreso = 0;
 let opcionProductos = 0;
 let opcionContinuar = "";
@@ -19,11 +20,12 @@ let interes = 0;
 // Creador de objetos (Usuarios)
 // ==================-==================
 
-function Usuario(usuario, password) {
-    this.nombreUsuario = usuario;
-    this.passwordUsuario = password;
+function Usuario(nombreUsuario, passwordUsuario) {
+    this.nombreUsuario = nombreUsuario;
+    this.passwordUsuario = passwordUsuario;
 }
 
+// ==================-==================
 
 // Creador de objetos (Productos)
 // ==================-==================
@@ -53,8 +55,10 @@ function Producto(nombreProd, precioProd, categoriaProd, marcaProd, codigoProd) 
 // ==================-==================
 const producto1 = new Producto("ZOTAC GEFORCE RTX 2060", 619, "TARJETAS DE VIDEO", "NVIDIA", "BFXZON02");
 const producto2 = new Producto("AMD PROCESADOR RYZEN 5 5600", 224, "PROCESADORES", "AMD", "BFX56");
-const producto3 = new Producto("GIGABYTE PLACA B450M DS3H V2", 93, "MOTHERBOARD", "GIGABYTE", "BFXGB45D");
-const producto4 = new Producto("NETAC MEMORIA SHADOW DDR4 16GB PC3200 RED", 60, "MEMORIA RAM", "NETAC", "BFXNS16R");
+const producto3 = new Producto("GIGABYTE PLACA A520M-H", 98, "MOTHERBOARD", "GIGABYTE", "BFXGBP98");
+const producto4 = new Producto("NETAC MEMORIA SHADOW DDR4-3200 16GB GREY NTSDD4P32SP-16E", 55, "MEMORIA RAM", "NETAC", "BFX32SP1");
+const producto5 = new Producto("GIGABYTE FUENTE 1000W GP-P1000GM 80 PLUS GOLD", 208, "FUENTES", "GIGABYTE", "BFXGBTP1000");
+const producto6 = new Producto("WESTERN DIGITAL SSD M.2 BLACK NVME SN750 SE 1TB", 157, "SSD M.2" , "WESTERN DIGITAL", "BFX1TB1");
 // ==================-==================
 
 // Funcion de ingreso de usuario
@@ -75,7 +79,7 @@ do {
             let usuarioIngresado = prompt("Ingrese su usuario: ");
             let contraseniaIngresada = prompt("Ingrese su contraseña: ");
 
-            if ((usuarios.find(usuario => usuario.nombreUsuario = usuarioIngresado.toLowerCase && usuario.passwordUsuario === contraseniaIngresada )) !== undefined) {
+            if (((usuarios.find(usuario => usuario.nombreUsuario = usuarioIngresado.toLowerCase && usuario.passwordUsuario === contraseniaIngresada)) !== undefined) && (usuarioIngresado !== "true")) {
 
                 alert("Bienvenido " + usuarioIngresado);
                 carrito();
@@ -116,18 +120,22 @@ do {
 
                     } else {
 
-                        let compararUsuarios = usuarios.find(usuario => usuario.nombreUsuario === usuarioRegistro.toLowerCase);
-
                         if (usuarioRegistro != "" && contraseniaRegistro != "") {
+
+                            let usuarioARegistrar = {
+                                nombreUsuario: usuarioRegistro.toLowerCase(),
+                                passwordUsuario: contraseniaRegistro
+                            }
+
+                            const compararUsuarios = usuarios.find(usuario => usuario.nombreUsuario === usuarioARegistrar.nombreUsuario);
 
                             if (compararUsuarios === undefined) {
 
-                                const nuevoUsuario = new Usuario(usuarioRegistro, contraseniaRegistro);
+                                const nuevoUsuario = new Usuario(usuarioARegistrar.nombreUsuario, usuarioARegistrar.passwordUsuario);
 
                                 usuarios.push(nuevoUsuario);
 
                                 alert("¡Usuario registrado correctamente!");
-                                console.log(usuarios);
 
                             } else {
 
@@ -172,20 +180,19 @@ do {
 // Funcion de carrito con todas las opciones correspondientes
 // ==================-==================
 function carrito() {
-
-    let precioAPagar = 0;
     
     do {
 
     opcionProductos = Number(prompt(`Seleccione los productos deseados: \n
-    1) Tarjeta de video:` + " " + `ZOTAC GEFORCE RTX 2060 \n 
-    USD 619,00 \n
-    2) Procesador:` + " " + `AMD RYZEN 5 5600 \n
-    USD 224,00 \n
-    3) Motherboard:` + " " + `GIGABYTE B450M DS3H V2 \n
-    USD 93,00 \n
-    4) Memoria RAM:` + " " + `NETAC SHADOW DDR4 16GB 3200 RED \n
-    USD 60,00 \n
+    1) Tarjeta de video:` + " " + `${producto1.nombreProd} \n 
+    USD ${producto1.precioProd} \n
+    2) Procesador:` + " " + `${producto2.nombreProd} \n
+    USD ${producto2.precioProd} \n
+    3) Motherboard:` + " " + `${producto3.nombreProd} \n
+    USD ${producto3.precioProd} \n
+    4) Memoria RAM:` + " " + `${producto4.nombreProd} \n
+    USD ${producto4.precioProd} \n
+    5) Ver carrito \n
     0) Volver \n`));
         
         switch (opcionProductos) {
@@ -194,7 +201,6 @@ function carrito() {
                 
                 producto1.productoSeleccionado();
                 precioAPagar = producto1.precioProd;
-                productosEnCarrito();
                 continuar();
 
             break;
@@ -203,7 +209,6 @@ function carrito() {
                 
                 producto2.productoSeleccionado();
                 precioAPagar = producto2.precioProd;
-                productosEnCarrito();
                 continuar();
 
             break;
@@ -212,7 +217,6 @@ function carrito() {
                 
                 producto3.productoSeleccionado();
                 precioAPagar = producto3.precioProd;
-                productosEnCarrito();
                 continuar();
 
             break;
@@ -221,10 +225,29 @@ function carrito() {
                 
                 producto4.productoSeleccionado();
                 precioAPagar = producto4.precioProd;
-                productosEnCarrito();
                 continuar();
 
-            break;
+                break;
+            
+            case 5:
+
+                productosEnCarrito = [...nombresProductos, ...preciosProductos];
+
+                if (productosEnCarrito.length === 0) {
+
+                    alert("No hay productos en el carrito");
+
+                    break;
+
+                } else {
+
+                    alert(`Productos en el carrito: \n
+                    ${productosEnCarrito.join("\n")}`);
+                    continuar();
+
+                }
+            
+                break;
         
             case 0:
                 
@@ -242,24 +265,6 @@ function carrito() {
         }
         
     } while (opcionProductos != 0);
-
-    // Productos en el carrito
-    // ==================-==================
-    function productosEnCarrito() {
-
-        let productosEnCarrito = [];
-
-        for (let i = 0; i < nombresProductos.length; i++) {
-
-            productosEnCarrito += nombresProductos[i] + " " + "USD" + " " + preciosProductos[i] + "\n";
-
-        }
-
-        console.log(productosEnCarrito);
-
-    }
-    // ==================-==================
-
 
     // Funcion para continuar
     // ==================-==================
@@ -338,7 +343,6 @@ function carrito() {
         // ==================-==================
         function calculadoraPago() {
 
-
             let precioAPagar = 0;
 
             for (let i = 0; i < preciosProductos.length; i++) {
@@ -349,9 +353,6 @@ function carrito() {
             preciosProductos = [];
 
 
-            console.log(precioAPagar);
-            console.log(preciosProductos);
-            
             interes = precioAPagar * (5 / 100);
             
             let precioMasInteres = precioAPagar + interes;
@@ -369,8 +370,9 @@ function carrito() {
 
                     alert("¡Compra realizada!");
                     vuelto = disponible - precioAPagar;
-                    alert(`Le han sobrado: ${vuelto}`);
+                    alert(`Le han sobrado: USD ${vuelto}`);
                     alert("¡Volviendo al menú de productos!");
+                    productosEnCarrito = [];
                     carrito();
 
                 } else {
@@ -433,6 +435,7 @@ function carrito() {
                         vuelto = disponibleTarjeta - precioMasInteres;
                         alert(`Le han sobrado: USD ${vuelto.toFixed(2)}`);
                         alert("¡Volviendo al menú de productos!");
+                        productosEnCarrito = [];
                         opcionCuotas = 0;
                         carrito();
 
@@ -444,6 +447,7 @@ function carrito() {
                         vuelto = disponibleTarjeta - precioCuotas[2];
                         alert(`Le han sobrado: USD ${vuelto.toFixed(2)}`);
                         alert("¡Volviendo al menú de productos!");
+                        productosEnCarrito = [];
                         opcionCuotas = 0;
                         carrito();
                         
@@ -455,6 +459,7 @@ function carrito() {
                         vuelto = disponibleTarjeta - precioCuotas[5];
                         alert(`Le han sobrado: USD ${vuelto.toFixed(2)}`);
                         alert("¡Volviendo al menú de productos!");
+                        productosEnCarrito = [];
                         opcionCuotas = 0;
                         carrito();
                         
@@ -466,6 +471,7 @@ function carrito() {
                         vuelto = disponibleTarjeta - precioCuotas[11];
                         alert(`Le han sobrado: USD ${vuelto.toFixed(2)}`);
                         alert("¡Volviendo al menú de productos!");
+                        productosEnCarrito = [];
                         opcionCuotas = 0;
                         carrito();
                         
@@ -499,18 +505,6 @@ function carrito() {
     // ==================-==================
 
 }
-// ==================-==================
-
-
-// Lista de productos mostrados en consola
-// ==================-==================
-console.log("Lista de productos disponibles: ")
-console.log("===============================")
-console.log(producto1);
-console.log(producto2);
-console.log(producto3);
-console.log(producto4);
-console.log("===============================")
 // ==================-==================
 
 // Mensaje de bienvenida e inicio del programa
